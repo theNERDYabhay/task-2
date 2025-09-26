@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <h2>Registration Form </h2>
+
+        </div>
+        <form class="form" id="form">
+          <div class="form-inside">
+            <label>Name</label>
+            <input type="text" id="name" placeholder="Enter your name">
+            <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+            <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+            <small>Error!! please enter valid name</small>
+          </div>
+
+          <div class="form-inside">
+            <label>Email</label>
+            <input type="text" id="email" placeholder="Enter your email">
+            <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+            <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+            <small>Enter correct email !!!</small>
+          </div>
+
+          <div class="form-inside">
+            <label>Contact Number</label>
+            <input type="text" id="contact" placeholder="Enter your contact number">
+            <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+            <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+            <small>Enter correct conatact number</small>
+          </div>
+
+          <div class="form-inside">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="null" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Alien</option>
+            </select>
+            <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+            <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+            <small>Error message</small>
+          </div>
+          <div class="form-inside">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+                <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+                <small>Error valid password</small>
+            </div>
+               <div class="form-inside">
+                <label>Confirm Password</label>
+                <input type="password" id="confirm" placeholder="Enter the password again"r>
+                <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+                <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+                <small>Password did not match</small>
+            </div>
+            <button type="submit" id="btn">Submit</button>
+
+
+        </form>
+</body>
+</html>
