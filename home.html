@@ -35,16 +35,36 @@
             <input type="text" id="contact" placeholder="Enter your contact number">
             <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
             <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
-            <small>Error message</small>
+            <small>Enter correct conatact number</small>
           </div>
 
           <div class="form-inside">
-            <label>Username</label>
-            <input type="text" id="username" placeholder="Enter your username">
+            <label>Gender</label>
+            <select id="gender">
+                <option value="null" disabled selected>Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Alien</option>
+            </select>
             <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
             <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
             <small>Error message</small>
           </div>
+          <div class="form-inside">
+                <label>Password</label>
+                <input type="password" id="password" placeholder="Enter your password">
+                <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+                <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+                <small>Error valid password</small>
+            </div>
+               <div class="form-inside">
+                <label>Confirm Password</label>
+                <input type="password" id="confirm" placeholder="Enter the password again"r>
+                <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
+                <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
+                <small>Password did not match</small>
+            </div>
+            <button type="submit" id="btn">Submit</button>
 
 
         </form>
