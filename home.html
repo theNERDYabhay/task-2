@@ -5,14 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div id="header">
+    <header class="header" id="header">
+         <div id="header">
             <h2>Registration Form </h2>
-
+            <nav id="nav">
+                <a href="#">Home</a>
+                <a href="carousel.html">Carousel</a>
+            </nav>
         </div>
+    </header>
+    <div class="container">
+       
         <form class="form" id="form">
           <div class="form-inside">
             <label>Name</label>
@@ -24,7 +30,7 @@
 
           <div class="form-inside">
             <label>Email</label>
-            <input type="text" id="email" placeholder="Enter your email">
+            <input type="text" id="email" placeholder="Enter your email" autocomplete="off">
             <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
             <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
             <small>Enter correct email !!!</small>
@@ -32,7 +38,7 @@
 
           <div class="form-inside">
             <label>Contact Number</label>
-            <input type="text" id="contact" placeholder="Enter your contact number">
+            <input type="text" id="contact" placeholder="Enter your contact number"  >
             <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
             <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
             <small>Enter correct conatact number</small>
@@ -41,7 +47,7 @@
           <div class="form-inside">
             <label>Gender</label>
             <select id="gender">
-                <option value="null" disabled selected>Select Gender</option>
+                <option disabled selected>Select Gender</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Alien</option>
@@ -59,7 +65,7 @@
             </div>
                <div class="form-inside">
                 <label>Confirm Password</label>
-                <input type="password" id="confirm" placeholder="Enter the password again"r>
+                <input type="password" id="confirm" placeholder="Enter the password again">
                 <i class="fa-solid fa-circle-check" style="color: #63E6BE;"></i>
                 <i class="fa-solid fa-circle-exclamation" style="color: #ee1b1b;"></i>
                 <small>Password did not match</small>
@@ -68,5 +74,110 @@
 
 
         </form>
+    </div>
+
+  
+    <script>
+const form = document.getElementById('form');
+const nameInput = document.getElementById('name');
+const emailInput = document.getElementById('email');
+const contactInput = document.getElementById('contact');
+const genderInput = document.getElementById('gender');
+const passwordInput = document.getElementById('password');
+const confirmInput = document.getElementById('confirm');
+
+form.addEventListener('submit', (event) => {
+  event.preventDefault();
+  validate();
+});
+
+const isEmail = (emailv) => {
+  var atSymbol = emailv.indexOf("@");
+  if (atSymbol < 1) return false;
+  var dot = emailv.lastIndexOf(".");
+  if (dot <= atSymbol + 2) return false;
+  if (dot === emailv.length - 1) return false;
+  return true;
+};
+
+const validate = () => {
+  const namev = nameInput.value.trim();
+  const emailv = emailInput.value.trim();
+  const contactv = contactInput.value.trim();
+  const genderv = genderInput.value;
+  const passwordv = passwordInput.value.trim();
+  const confirmv = confirmInput.value.trim();
+
+  // ✅ Name validation
+  if (namev === "") {
+    setError(nameInput, "Name cannot be blank");
+  } else if (namev.length <= 3 || namev.length >= 20) {
+    setError(nameInput, "Username must be between 4 and 20 characters");
+  } else if (!isNaN(namev)) {
+    setError(nameInput, "Only characters are allowed");
+  } else {
+    setSuccess(nameInput);
+  }
+
+  // ✅ Email validation
+  if (emailv === "") {
+    setError(emailInput, "Email cannot be blank");
+  } else if (!isEmail(emailv)) {
+    setError(emailInput, "Email is not valid");
+  } else {
+    setSuccess(emailInput);
+  }
+
+  // ✅ Contact validation (10-digit numbers only)
+  const contactRegex = /^[0-9]{10}$/;
+  if (contactv === "") {
+    setError(contactInput, "Contact number cannot be blank");
+  } else if (!contactRegex.test(contactv)) {
+    setError(contactInput, "Enter a valid 10-digit contact number");
+  } else {
+    setSuccess(contactInput);
+  }
+
+  // ✅ Gender validation
+  if (genderv === "Select Gender") {
+    setError(genderInput, "Please select your gender");
+  } else {
+    setSuccess(genderInput);
+  }
+
+  // ✅ Password validation (min 6 chars, must include letter and number)
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
+  if (passwordv === "") {
+    setError(passwordInput, "Password cannot be blank");
+  } else if (!passwordRegex.test(passwordv)) {
+    setError(passwordInput, "Min 6 chars, include letters & numbers");
+  } else {
+    setSuccess(passwordInput);
+  }
+
+  // ✅ Confirm Password validation
+  if (confirmv === "") {
+    setError(confirmInput, "Please confirm your password");
+  } else if (passwordv !== confirmv) {
+    setError(confirmInput, "Passwords do not match");
+  } else {
+    setSuccess(confirmInput);
+  }
+};
+
+function setError(element, message) {
+  const formInside = element.parentElement;
+  const small = formInside.querySelector("small");
+  small.innerText = message;
+  formInside.className = "form-inside error";
+}
+
+function setSuccess(element) {
+  const formInside = element.parentElement;
+  formInside.className = "form-inside success";
+}
+</script>
+
+
 </body>
 </html>

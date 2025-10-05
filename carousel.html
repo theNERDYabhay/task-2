@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Superhero Carousel with Per-Slide Rating</title>
+    <link rel="stylesheet" href="carousel.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="navbar">
+      <span class="brand">CAROUSEL</span>
+      <nav>
+        <a href="#">Home</a>
+        <a href="home.html">Registration</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+
+    <div class="slider-wrapper">
+      <button class="slide-arrow left" id="prevBtn">&#9664;</button>
+
+      <div class="slider-item active" style="background-image:url('https://wallpapers.com/images/high/avengers-endgame-characters-8g42or4s2cbx9zof.webp')">
+        <div class="slide-overlay"></div>
+        <div class="slide-content"><h2>Avengers: Endgame</h2></div>
+      </div>
+      <div class="slider-item" style="background-image:url('https://wallpapers.com/images/high/superman-vs-batman-iphone-amoled-xzit9tn7jfoy6r9r.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content"><h2>Batman v/s Superman</h2></div>
+      </div>
+      <div class="slider-item" style="background-image:url('https://wallpapers.com/images/high/fantastic-four-bl1hz3m03ywg623t.webp');">
+        <div class="slide-overlay"></div>
+        <div class="slide-content"><h2>Fantastic Four</h2></div>
+      </div>
+
+      <button class="slide-arrow right" id="nextBtn">&#9654;</button>
+    </div>
+
+    <div class="rating">
+      <span class="star" data-star="1">&#9733;</span>
+      <span class="star" data-star="2">&#9733;</span>
+      <span class="star" data-star="3">&#9733;</span>
+      <span class="star" data-star="4">&#9733;</span>
+      <span class="star" data-star="5">&#9733;</span>
+      <span id="rating-output">Rating is: 0/5</span>
+    </div>
+  </div>
+  
+ <script>
+  const items = document.querySelectorAll('.slider-item');
+  const stars = document.querySelectorAll('.star');
+  const output = document.getElementById('rating-output');
+  let current = 0;
+
+  // Ratings storage for each slide
+  const ratings = Array(items.length).fill(0);
+
+  // Show slide and its rating
+  function showSlide(index){
+    items.forEach((item, idx) => {
+      if(idx === index){
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+    updateStars(ratings[index]);
+  }
+
+  // Move slides (looping)
+  function moveSlide(dir){
+    current = (current + dir + items.length) % items.length;
+    showSlide(current);
+  }
+
+  // Update stars visually
+  function updateStars(r){
+    stars.forEach((s, idx) => {
+      s.classList.toggle('selected', idx < r);
+    });
+    output.innerText = `Rating is: ${r}/5`;
+  }
+
+  // Click star to set/reset rating
+  stars.forEach((star, idx) => {
+    star.onclick = function(){
+      if(ratings[current] === idx + 1){
+        ratings[current] = 0; // clear if same star clicked
+      } else {
+        ratings[current] = idx + 1;
+      }
+      updateStars(ratings[current]);
+    }
+  });
+
+  // Button listeners
+  document.getElementById('prevBtn').onclick = () => moveSlide(-1);
+  document.getElementById('nextBtn').onclick = () => moveSlide(1);
+
+  // Initial setup
+  showSlide(current);
+</script>
+
+</body>
+</html>
